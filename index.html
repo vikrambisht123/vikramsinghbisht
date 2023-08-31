@@ -29,6 +29,26 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+		<script src="https://smtpjs.com/v3/smtp.js"></script>
+		<script>
+			function sendEmail() {
+			    let name = document.getElementById("name").value;
+			    let email = document.getElementById("email").value;
+			    let message = document.getElementById("message").value;
+			    let finalmessage = `Name : ${name} <br>  Email : ${email} <br>  Message : ${message} <br>`;
+			    Email.send({
+				Host : "smtp.mailtrap.io",
+				Username : "username",
+				Password : "password",
+				To : 'vikrambisht426@gmail.com',
+				From : email,
+				Subject : "Mail from "+ name,
+				Body : finalmessage
+			    }).then(
+			      message => alert(message)
+			    );
+			}
+		</script>
     </head>
 
     <body>
@@ -340,7 +360,7 @@
                     <section class="py-5 wow fadeInUp" data-wow-delay="0.1s" id="contact">
                         <h1 class="title pb-3 mb-5">Contact Me</h1>
 						<p class="mb-4">Have any vacancy or just want to say hello? I'd love to hear from you! Feel free to reach out using the contact details below or by filling out the contact form.</p>
-                        <form>
+                        <form action="#" method="post">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
@@ -367,7 +387,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                    <button class="btn btn-primary w-100 py-3" type="submit" id="submit" onclick="sendEmail()">Send Message</button>
                                 </div>
                             </div>
                         </form>
